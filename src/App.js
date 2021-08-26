@@ -1,5 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+const firebaseConfig = require("./credentials.json");
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore();
 
 function App() {
   return (
@@ -7,16 +13,9 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          {app.name}
+          {JSON.stringify(db.toJSON(), null, 2)}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
